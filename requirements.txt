@@ -9,3 +9,13 @@ PyYAML==6.0.2
 sqlparse==0.5.3
 tzdata==2025.2
 uritemplate==4.1.1
+uvicorn
+sqlalchemy
+flake8
+flake8-docstrings
+flake8-import-order
+pytest
+pytest-cov
+httpx
+bandit
+pip-audit

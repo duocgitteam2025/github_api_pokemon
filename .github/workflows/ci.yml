@@ -1,0 +1,105 @@
+name: CI - FastAPI
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev]
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name:  Checkout repository
+        uses: actions/checkout@v3
+
+      - name:  Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name:  Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+
+      - name: 🧹 Run linter (flake8)
+        run: flake8 app/ tests/
+        continue-on-error: true
+  security:
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    needs: [linter]
+
+    steps:
+      - name:  Checkout repository
+        uses: actions/checkout@v3
+
+      - name:  Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name:  Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+
+      - name:  Run security checks with Bandit
+        run: bandit -r app/
+        continue-on-error: true
+
+      - name:  Check vulnerable dependencies with pip-audit
+        run: pip-audit
+        continue-on-error: true
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name:  Checkout repository
+        uses: actions/checkout@v3
+
+      - name:  Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name:  Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+
+      - name:  Run tests
+        run: PYTHONPATH=. pytest --cov=app --cov-fail-under=80 tests/
+        continue-on-error: true
+
+      - name:  Upload coverage report (text summary)
+        run: coverage report
+        continue-on-error: true
+  check-secrets:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name:  Checkout repository
+        uses: actions/checkout@v3
+
+      - name:  Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name:  Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+
+      - name:  Scan for secrets with Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          config-path: .github/gitleaks.toml
+        continue-on-error: true
