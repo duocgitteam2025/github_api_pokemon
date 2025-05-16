@@ -1,9 +1,16 @@
-Write-Host "Hook post-commit activado: Realizando push automático..."
+Write-Host "======== Hook post-commit activado: Realizando push automático ========"
 
-git push origin $(git branch --show-current)
+# Verifica en qué rama estás y haz el push
+$currentBranch = git branch --show-current
 
-if ($LASTEXITCODE -eq 0) {
-    Write-Host "Push realizado correctamente!"
+if ($currentBranch) {
+    git push origin $currentBranch
+
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "✅ Push realizado correctamente en la rama: $currentBranch"
+    } else {
+        Write-Host "❌ Error al realizar el push. Revisa la conexión o permisos."
+    }
 } else {
-    Write-Host "Error al realizar el push, revisa la conexión o permisos."
+    Write-Host "⚠️ No se detectó ninguna rama activa."
 }
