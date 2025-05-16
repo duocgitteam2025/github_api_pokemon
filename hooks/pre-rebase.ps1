@@ -1,2 +1,2 @@
 Write-host "Pre rebase"
-exit 1
+exit 0

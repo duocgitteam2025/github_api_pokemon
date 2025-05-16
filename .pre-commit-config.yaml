@@ -30,3 +30,9 @@ repos:
         entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/post-commit.ps1
         language: system
         stages: [post-commit]
+
+      - id: pre-merge-commit
+        name: Pre-Merge Verification
+        entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/pre-merge-commit.ps1
+        language: system
+        stages: [pre-merge-commit]
