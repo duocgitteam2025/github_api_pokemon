@@ -14,8 +14,7 @@ repos:
 
       - id: check-pre-push
         name: Check Pre-Push
-        entry: pwsh -NoProfile -File hooks/pre-push.ps1
-        #entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/pre-push.ps1
+        entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/pre-push.ps1
         language: system
         stages: [pre-push]
 
