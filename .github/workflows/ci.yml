@@ -99,9 +99,13 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
 
-      - name: 🔍 Scan for secrets with Gitleaks (latest)
-        uses: gitleaks/gitleaks-action@latest
-        with:
-          scan-path: .
-        continue-on-error: true
+      - name: 🔍 Install Gitleaks
+        run: |
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v7.6.0/gitleaks-linux-amd64 -o gitleaks
+          chmod +x gitleaks
+          sudo mv gitleaks /usr/local/bin/
+
+      - name: 🔎 Run Gitleaks Scan
+        run: |
+          gitleaks detect --source=. --no-git --redact
 
