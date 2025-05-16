@@ -102,13 +102,14 @@ jobs:
         run: |
           # Descargar la versión correcta de Gitleaks
           curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v8.17.0/gitleaks_8.17.0_linux_amd64.tar.gz -o gitleaks.tar.gz
-          tar -xzf gitleaks.tar.gz gitleaks
+          tar -xzf gitleaks.tar.gz
           chmod +x gitleaks
           sudo mv gitleaks /usr/local/bin/
           rm gitleaks.tar.gz
 
       - name: 🔎 Run Gitleaks Scan
         run: |
-          gitleaks detect -p . --redact --no-git
+          gitleaks detect -v --source=. --redact --no-git
+
       
 
