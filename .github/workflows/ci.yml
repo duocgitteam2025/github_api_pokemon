@@ -99,9 +99,9 @@ jobs:
           pip install -r requirements.txt
           pip install -r requirements-dev.txt
 
-      - name: 🔍 Scan for secrets with Gitleaks v7
-        uses: zricethezav/gitleaks-action@v7
+      - name: 🔍 Scan for secrets with Gitleaks (latest)
+        uses: gitleaks/gitleaks-action@latest
         with:
-          config-path: .github/gitleaks.toml
+          scan-path: .
         continue-on-error: true
 
