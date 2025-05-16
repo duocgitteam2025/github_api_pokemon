@@ -19,3 +19,4 @@ bandit
 pip-audit
 uvicorn
 sqlalchemy
+pytest-django==4.5.2
