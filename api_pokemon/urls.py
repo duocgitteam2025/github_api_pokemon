@@ -9,4 +9,6 @@ router.register(r'pokemon', PokemonViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('pokemon/', include('pokemon.urls')),
+
 ]
