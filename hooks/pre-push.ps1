@@ -12,5 +12,5 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
-Write-Host "✅ Pre-push checks passed."
+Write-Host "✅ Pre-push checks passed. Proceeding with push."
 exit 0
