@@ -1,4 +1,5 @@
 from django.test import TestCase
+
 from pokemon.models import Pokemon
 
 
@@ -9,9 +10,7 @@ class PokemonModelTest(TestCase):
         Método que se ejecuta antes de cada test.
         """
         self.pokemon = Pokemon.objects.create(
-            nombre="Pikachu",
-            tipo="Eléctrico",
-            nivel=5
+            nombre="Pikachu", tipo="Eléctrico", nivel=5
         )
 
     def test_pokemon_creation(self):
