@@ -3,5 +3,3 @@
 
 # modelo de ramas del proyectpo 
 ![image branch](img/img.png)
-
-s
