@@ -6,7 +6,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 Write-Host "Running bandit security scan..."
-bandit -r . -ll --skip B101,B102
+bandit -r . -ll --exclude myvenv --skip B101,B102
 if ($LASTEXITCODE -ne 0) {
     Write-Host "❌ Bandit found security issues. Push cancelled."
     exit 1
