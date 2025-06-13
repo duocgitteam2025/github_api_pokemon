@@ -1,0 +1,38 @@
+repos:
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+
+  - repo: local
+    hooks:
+      - id: check-commit-message
+        name: Check Commit Message
+        entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/check-commit-msg.ps1
+        language: system
+        stages: [commit-msg]
+
+      - id: check-pre-push
+        name: Check Pre-Push
+        entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/pre-push.ps1
+        language: system
+        stages: [pre-push]
+
+      - id: check-pre-rebase
+        name: Check Pre-Rebase
+        entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/pre-rebase.ps1
+        language: system
+        stages: [pre-rebase]
+
+    
+      - id: post-commit
+        name: Post Commit Push
+        entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/post-commit.ps1
+        language: system
+        stages: [post-commit]
+
+      - id: pre-merge-commit
+        name: Pre-Merge Verification
+        entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/pre-merge-commit.ps1
+        language: system
+        stages: [pre-merge-commit]
