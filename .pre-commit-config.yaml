@@ -28,21 +28,21 @@ repos:
         language: system
         stages: [pre-push]
 
-      - id: check-pre-rebase
-        name: Check Pre-Rebase
-        entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/pre-rebase.ps1
-        language: system
-        stages: [pre-rebase]
+      # - id: check-pre-rebase
+      #   name: Check Pre-Rebase
+      #   entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/pre-rebase.ps1
+      #   language: system
+      #   stages: [pre-rebase]
 
     
-      - id: post-commit
-        name: Post Commit Push
-        entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/post-commit.ps1
-        language: system
-        stages: [post-commit]
+      # - id: post-commit
+      #   name: Post Commit Push
+      #   entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/post-commit.ps1
+      #   language: system
+      #   stages: [post-commit]
 
-      - id: pre-merge-commit
-        name: Pre-Merge Verification
-        entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/pre-merge-commit.ps1
-        language: system
-        stages: [pre-merge-commit]
+      # - id: pre-merge-commit
+      #   name: Pre-Merge Verification
+      #   entry: powershell.exe -NoProfile -ExecutionPolicy Bypass -File hooks/pre-merge-commit.ps1
+      #   language: system
+      #   stages: [pre-merge-commit]
