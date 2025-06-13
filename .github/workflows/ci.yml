@@ -2,9 +2,9 @@ name: CI - Django API Pokemon
 
 on:
   push:
-    branches: [feature/mejora-ia]
+    branches: [main]
   pull_request:
-    branches: [feature/mejora-ia]
+    branches: [main]
 
 jobs:
   linter:
