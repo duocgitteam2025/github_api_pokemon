@@ -1,8 +1,4 @@
 [flake8]
-exclude =
-    migrations,
-    __pycache__,
-    manage.py,
-    settings.py
+exclude = .git,__pycache__,*/migrations/*
 max-line-length = 120
-ignore = D100,D101,D102,D104,D200,D212
+ignore = D100,D101,D102,D103,D104,D105,D106,D200,D202,D212,I100,I201,I202
